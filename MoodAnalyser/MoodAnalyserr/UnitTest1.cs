@@ -37,5 +37,20 @@ namespace MoodAnalyserr
             //comparing expected and actual 
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        [TestCategory("NULL")]
+        public void TestMethod3()
+        {
+            //giving string value to message 
+            string message = null;
+            //giving expected result to variable 
+            string expected = "happy";
+            //creating object
+            MoodAnalyzer moodAnalyzer = new MoodAnalyzer(message);
+            //returned value assigning to actual
+            string actual = moodAnalyzer.AnalyseMood();
+            //comparing expected and actual 
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

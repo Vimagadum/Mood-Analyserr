@@ -18,16 +18,25 @@ namespace MoodAnalyser
         //method to analyse mood
         public string AnalyseMood()
         {
-            //converting the letters from the message to lower and checking its containing happy word or not
-            if (message.ToLower().Contains("happy"))
+            try
             {
+                //converting the letters from the message to lower and checking its containing happy word or not
+                if (message.ToLower().Contains("happy"))
+                {
+                    return "happy";
+                }
+                else
+                {
+                    return "sad";
+                }
+            }
+            //catching null 
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.Message);
                 return "happy";
-            }
-            else
-            {
-                return "sad";
-            }
-        }
 
+            }           
+        }
     }
 }
