@@ -10,18 +10,33 @@ namespace MoodAnalyser
     {
         //Declaring class level variable 
         public string message;
-        
+        //parameterised constructor
         public MoodAnalyzer(string message)
         {
             this.message = message;
+        }
+        //empty constructor
+        public MoodAnalyzer()
+        {
+
         }
         //method to analyse mood
         public string AnalyseMood()
         {
             try
             {
-                //converting the letters from the message to lower and checking its containing happy word or not
-                if (message.ToLower().Contains("happy"))
+                //converting message to lower letter
+                message = message.ToLower();
+                //conditions for null empty happy and sad
+                if (message == null)
+                {
+                    throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NULL_EXCEPTION, "Message should not be null");
+                }
+                else if (message.Equals(string.Empty))
+                {
+                    throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.EMPTY_EXCEPTION, "Message can't be Empty");
+                }
+                else if (message.Contains("happy"))
                 {
                     return "happy";
                 }
@@ -30,7 +45,7 @@ namespace MoodAnalyser
                     return "sad";
                 }
             }
-            //catching null 
+            //catcing null refernce exception and return string as happy 
             catch (NullReferenceException ex)
             {
                 Console.WriteLine(ex.Message);
